@@ -623,6 +623,7 @@ end
 
 desc "Generate rpm package"
 task :rpm, [:dir] => :build do
+  create_version
   sh "mkdir -p #{File.join(D[:build],'SOURCES')}"
   sh "mv #{File.join(D[:build],'*')} #{File.join(D[:build],'SOURCES')} || true"
   specs = File.read(File.join(D[:pkg],'redhat','kadeploy.spec.in'))
