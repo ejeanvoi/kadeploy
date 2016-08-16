@@ -593,8 +593,15 @@ kadeploy (#{VERSION}) unstable; urgency=low
   end
 end
 
+def create_version
+  File::open('conf/version', 'w') do |fd|
+    fd.puts VERSION
+  end
+end
+
 desc "Build Debian package (normal)"
 task :debian do |f|
+  create_version
   create_debian_changelog
   puts <<-EOF
 # Changelog entry generated.
